@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+
+# Generated reader data (built from your local Anki media — never committed)
+src/data/reader.json
+public/reader.json
+
+# Audio files (bring-your-own; hosted separately, see README)
+public/audio/
+audio/
+
+# Editor / OS junk
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/

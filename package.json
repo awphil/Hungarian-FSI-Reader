@@ -1,0 +1,21 @@
+{
+  "name": "hungarian-fsi-reader",
+  "private": false,
+  "version": "0.1.0",
+  "description": "Interactive two-column reader for the FSI Hungarian Basic Course with click-to-play audio and hide/reveal study tools.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^6.4.3"
+  }
+}

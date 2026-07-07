@@ -1,0 +1,476 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f1ea;
+  --ink: #17201d;
+  --muted: #68736e;
+  --panel: #fffdf8;
+  --line: #d9d0c1;
+  --green: #315f4d;
+  --green-2: #dcece2;
+  --shadow: 0 18px 50px rgba(50, 42, 30, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(90deg, rgba(49, 95, 77, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(49, 95, 77, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 12% 4%, #e2ebdf 0, transparent 34%),
+    var(--bg);
+  background-size: 28px 28px, 28px 28px, auto, auto;
+  color: var(--ink);
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+
+button, input, select { font: inherit; }
+
+button {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 42px;
+  padding: 10px 14px;
+}
+button:hover { border-color: var(--green); }
+button:disabled { cursor: default; opacity: 0.45; }
+
+.primary {
+  align-items: center;
+  background: var(--green);
+  border-color: var(--green);
+  color: #fffdf8;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+}
+.secondary {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+}
+
+/* --- top bar --- */
+.app-top {
+  align-items: center;
+  backdrop-filter: blur(16px);
+  background: rgba(255, 253, 248, 0.88);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+.brand-mark {
+  align-items: center;
+  background: var(--green);
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+.brand span,
+.task-label {
+  color: var(--muted);
+  display: block;
+  font-size: 13px;
+}
+
+/* --- reader layout --- */
+.reader-layout {
+  display: grid;
+  gap: 18px;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 28px 24px 56px;
+}
+
+.reader-toolbar,
+.reader-player,
+.reader-error {
+  background: rgba(255, 253, 248, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.reader-toolbar {
+  align-items: end;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 22px;
+}
+.reader-toolbar h1 {
+  font-size: 34px;
+  line-height: 1.05;
+  margin: 8px 0;
+}
+.reader-toolbar p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.fsi-autoplay-toggle {
+  align-items: center;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 13px;
+  gap: 8px;
+  margin-top: 12px;
+}
+.fsi-autoplay-toggle input {
+  accent-color: var(--green);
+  cursor: pointer;
+  height: 16px;
+  min-height: 0;
+  width: 16px;
+}
+
+.reader-page-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.reader-pager-bottom {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 24px;
+}
+.reader-pager-bottom .reader-page-controls {
+  justify-content: center;
+}
+.reader-page-controls label {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 8px;
+}
+.reader-page-controls input {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  min-height: 42px;
+  padding: 8px 10px;
+  width: 74px;
+}
+
+/* --- audio player --- */
+.reader-player {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(180px, 0.38fr) minmax(0, 1fr);
+  padding: 14px;
+  position: sticky;
+  top: 82px;
+  z-index: 8;
+}
+.reader-player strong {
+  display: block;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+.reader-player-controls {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto auto minmax(0, 1fr);
+}
+.reader-player-controls audio { display: none; }
+.reader-empty-player { color: var(--muted); }
+
+.audio-progress-column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.audio-scrubber {
+  background: #efece2;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.audio-scrubber-fill {
+  background: var(--green);
+  border-radius: 6px;
+  height: 100%;
+}
+.audio-progress-meta {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.audio-time {
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.audio-play-button {
+  align-items: center;
+  background: #fffdf8;
+  border-color: var(--line);
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 7px;
+  justify-content: center;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.audio-play-button:hover {
+  background: #f7f4eb;
+  border-color: var(--green);
+}
+.audio-play-button.slow {
+  background: #edf4ef;
+  border-color: #c5d8cb;
+  color: var(--green);
+}
+.audio-play-button.slow:hover {
+  background: #e1eee6;
+  border-color: #a9c6b2;
+}
+.audio-mode-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* --- FSI two-column book --- */
+.fsi-book {
+  background: rgba(255, 253, 248, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  font-family: Georgia, "Times New Roman", serif;
+  margin: 14px 0 120px;
+  padding: 20px 28px 32px;
+}
+.fsi-columns-head {
+  border-bottom: 2px solid var(--line);
+  column-gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+.fsi-col-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 6px;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.fsi-col-toggle:hover,
+.fsi-col-toggle:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+.fsi-col-toggle.on {
+  background: var(--green-2);
+  color: var(--green);
+}
+
+button.fsi-hidden {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--line),
+    var(--line) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border: 1px dashed var(--muted);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  min-height: 27px;
+  padding: 3px 16px;
+  text-align: left;
+  width: fit-content;
+}
+button.fsi-hidden:hover,
+button.fsi-hidden:focus-visible {
+  border-color: var(--green);
+  outline: none;
+}
+.fsi-mask {
+  color: var(--muted);
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.fsi-hidden:hover .fsi-mask,
+.fsi-hidden:focus-visible .fsi-mask {
+  color: var(--green);
+}
+
+.fsi-row {
+  align-items: baseline;
+  border-radius: 6px;
+  column-gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px 8px;
+}
+/* Vocab build-ups sit indented under their sentence. The indent lives on the
+   revealed content (not the row) so hidden reveal chips stay flush-left. */
+.fsi-row.vocab .fsi-en:not(.fsi-hidden) { padding-left: 40px; }
+.fsi-row.vocab .fsi-hu:not(.fsi-hidden) { padding-left: 48px; }
+.fsi-row.vocab .fsi-en { color: var(--ink); }
+.fsi-row.sentence { margin-top: 2px; }
+.fsi-row.active { background: var(--green-2); }
+.fsi-row.active .fsi-en { font-weight: 700; }
+.fsi-row.active .fsi-hu { color: var(--green); font-weight: 700; }
+
+.fsi-en {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.fsi-hu {
+  align-items: baseline;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--green);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 19px;
+  gap: 8px;
+  justify-content: space-between;
+  line-height: 1.5;
+  min-height: 0;
+  padding: 2px 8px;
+  text-align: left;
+  width: 100%;
+}
+.fsi-hu:not(.fsi-hidden):hover:not(:disabled),
+.fsi-hu:not(.fsi-hidden):focus-visible {
+  background: var(--green);
+  color: #fffdf8;
+  outline: none;
+}
+.fsi-hu:hover:not(:disabled) .fsi-hu-icon,
+.fsi-hu:focus-visible .fsi-hu-icon {
+  color: #fffdf8;
+  opacity: 1;
+}
+.fsi-hu:disabled { color: var(--muted); cursor: default; }
+.fsi-hu-icon {
+  color: var(--green);
+  flex-shrink: 0;
+  opacity: 0.35;
+  transform: translateY(3px);
+}
+
+.fsi-source {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 24px 0 40px;
+  padding-top: 14px;
+}
+.fsi-source p { margin: 0; }
+.fsi-source a { color: var(--green); text-decoration: underline; }
+.fsi-source a:hover { color: var(--ink); }
+.fsi-source-file { margin-top: 4px; opacity: 0.75; }
+.fsi-source code {
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 11px;
+}
+
+.reader-error { padding: 28px; }
+.reader-error code {
+  background: var(--green-2);
+  border-radius: 4px;
+  color: var(--green);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 13px;
+  padding: 1px 6px;
+}
+.loading {
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 24px;
+}
+
+/* --- responsive --- */
+@media (max-width: 860px) {
+  .app-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .reader-toolbar,
+  .reader-player {
+    grid-template-columns: 1fr;
+  }
+  .reader-page-controls {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .reader-layout { padding: 18px 12px 42px; }
+  .reader-toolbar,
+  .fsi-book,
+  .reader-error { padding: 18px; }
+  .reader-toolbar h1 { font-size: 28px; }
+  .reader-player { position: static; }
+  .reader-player-controls {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack English over Hungarian on narrow screens. */
+  .fsi-columns-head { display: none; }
+  .fsi-row {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+  }
+  .fsi-row.vocab { padding-left: 20px; }
+  .fsi-en {
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .fsi-hu { font-size: 20px; }
+}
