@@ -34,16 +34,16 @@ jobs:
       - name: Set base path for GitHub Pages
         run: echo "VITE_BASE_PATH=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
 
-      # Set to your Release download URL prefix in the repo secrets
-      # (Settings → Secrets and variables → Actions → New repository variable
-      #  named AUDIO_BASE_URL). Example:
-      #   https://github.com/USER/REPO/releases/download/audio-v1/
-      - name: Set audio base URL
-        if: vars.AUDIO_BASE_URL != ''
-        run: echo "VITE_AUDIO_BASE_URL=${{ vars.AUDIO_BASE_URL }}" >> $GITHUB_ENV
+      - name: Download audio from release
+        run: |
+          gh release download audio-v1 --pattern "fsi-audio-v1.zip" --dir .
+          mkdir -p public/audio
+          cd public/audio && unzip -o ../../fsi-audio-v1.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Build
-        run: npm run build
+        run: VITE_AUDIO_BASE_URL=audio/ npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
