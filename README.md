@@ -1,5 +1,7 @@
 # Hungarian FSI Reader
 
+**[Try it live →](https://awphil.github.io/Hungarian-FSI-Reader/)**
+
 An interactive two-column book reader for the **FSI Hungarian Basic Course, Volume 1**. Every Hungarian line is a click-to-play audio button, English and Hungarian columns can be hidden independently, and hidden cells reveal one at a time so you can self-test.
 
 The reader is a **static site**: a Python build script turns your Anki export into a single `reader.json`, and the React app loads it in the browser. There is no server at runtime — it deploys to GitHub Pages (or any static host) with `git push`.
